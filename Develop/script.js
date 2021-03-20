@@ -25,10 +25,19 @@ function setColors () {
     }
 }
 
-//sets time at top of screen
-$('#currentDay').text(moment());
-setColors();
+function init () {
+    for (const block in timeBlockArray) {
+        if (localStorage.getItem(timeBlockArray[block])) {
+            $(`#in${timeBlockArray[block]}`).val(localStorage.getItem(timeBlockArray[block]));
+        }
+    }
+    setColors();
+    //sets time at top of screen
+    $('#currentDay').text(moment());
+}
 
-$('.table').siblings("button").on('click', function () {
-    console.log("Hello");
+init();
+$('.saveBtn').on('click', function () {
+    btnNum = $(this).data("hour");
+    localStorage.setItem(btnNum, $(`#in${btnNum}`).val());
 });
