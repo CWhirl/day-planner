@@ -27,8 +27,8 @@ function setColors () {
 
 function init () {
     for (const block in timeBlockArray) {
-        if (localStorage.getItem(timeBlockArray[block])) {
-            $(`#in${timeBlockArray[block]}`).val(localStorage.getItem(timeBlockArray[block]));
+        if (localStorage.getItem($(`#${block}`).data("hour")) != undefined) {
+            $(`#in${$(`#${block}`).data("hour")}`).val(localStorage.getItem($(`#${block}`).data("hour")));
         }
     }
     setColors();
